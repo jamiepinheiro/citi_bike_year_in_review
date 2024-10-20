@@ -2,33 +2,62 @@ import cv2
 import numpy as np
 import argparse
 
+class Route:
+    def __init__(self, route_coords, end_point):
+        self.route_coords = route_coords
+        self.end_point = end_point
+        self.start_point = max(route_coords, key=lambda p: (p[0] - end_point[0])**2 + (p[1] - end_point[1])**2)
+
+    def __str__(self):
+        return f"Route(route_coords={self.route_coords[:5]}..., start_point={self.start_point}, end_point={self.end_point})"
+
 def extract_route(image_path):
-    # Load the image
     img = cv2.imread(image_path)
     
     # Convert to HSV color space
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     
-    # Define range of purple color in HSV
+    # Define color ranges in HSV
     lower_purple = np.array([130,50,50])
     upper_purple = np.array([170,255,255])
+    lower_pink = np.array([145,50,50])
+    upper_pink = np.array([175,255,255])
     
-    # Threshold the HSV image to get only purple colors
-    mask = cv2.inRange(hsv, lower_purple, upper_purple)
+    # Create masks
+    purple_mask = cv2.inRange(hsv, lower_purple, upper_purple)
+    pink_mask = cv2.inRange(hsv, lower_pink, upper_pink)
     
-    # Find contours in the mask
-    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    # Find contours
+    purple_contours, _ = cv2.findContours(purple_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    pink_contours, _ = cv2.findContours(pink_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    # Assuming the largest contour is our route
-    route = max(contours, key=cv2.contourArea)
+    def find_circular_point(contours):
+        for contour in sorted(contours, key=cv2.contourArea, reverse=True):
+            # Compute circularity
+            area = cv2.contourArea(contour)
+            perimeter = cv2.arcLength(contour, True)
+            if perimeter == 0:
+                continue
+            circularity = 4 * np.pi * (area / (perimeter * perimeter))
+            
+            # If the contour is sufficiently circular
+            if circularity > 0.8:  # You might need to adjust this threshold
+                (x, y), radius = cv2.minEnclosingCircle(contour)
+                return (int(x), int(y))
+        return None
     
-    # Convert route to list of coordinates
-    route_coords = [tuple(point[0]) for point in route]
+    # Find end (pink) point
+    end_point = find_circular_point(pink_contours)
     
-    return route_coords
+    # Find the route (the largest purple contour that's not circular)
+    route_contour = max(purple_contours, key=cv2.contourArea)
+    route_coords = [tuple(point[0]) for point in route_contour]
+    
+    return Route(route_coords, end_point)
 
-def draw_route_ascii(route_coords, width=50, height=20):
+def draw_route_ascii(route, width=25, height=25):
     # Initialize the canvas
+    route_coords = route.route_coords
     canvas = [[' ' for _ in range(width)] for _ in range(height)]
     
     # Find min and max coordinates to scale the route
@@ -65,8 +94,8 @@ def draw_route_ascii(route_coords, width=50, height=20):
             canvas[sy2][sx2] = '\\'
     
     # Mark start and end points
-    start_x, start_y = route_coords[0]
-    end_x, end_y = route_coords[-1]
+    start_x, start_y = route.start_point
+    end_x, end_y = route.end_point
     canvas[int((start_y - min_y) * scale_y)][int((start_x - min_x) * scale_x)] = 'S'
     canvas[int((end_y - min_y) * scale_y)][int((end_x - min_x) * scale_x)] = 'E'
     
@@ -77,10 +106,10 @@ def main():
     parser = argparse.ArgumentParser(description='Extract route from image and display ASCII map.')
     parser.add_argument('image_path', type=str, help='Path to the image file containing the route')
     args = parser.parse_args()
-    route = extract_route(args.image_path)
+    route = extract_route_and_points(args.image_path)
     ascii_map = draw_route_ascii(route)
     print(ascii_map)
-    # print(route)
+    print(route)
 
 if __name__ == "__main__":
     main()

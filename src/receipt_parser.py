@@ -10,7 +10,7 @@ import argparse
 def load_station_data(station_fpath):
     with open(station_fpath, 'r') as f:
         data = json.load(f)
-    return {feature['properties']['name']: feature['geometry']['coordinates'] for feature in data['features']}
+    return {station['name']: [station['lat'], station['lon']] for station in data['data']['stations']}
 
 def find_coordinates(station_name, station_data):
     # Decode HTML entities
@@ -20,7 +20,9 @@ def find_coordinates(station_name, station_data):
     best_match = process.extractOne(station_name, station_data.keys())
     
     if best_match and best_match[1] >= 90:  # Adjust the threshold as needed
-        return station_data[best_match[0]]
+        coords = station_data[best_match[0]]
+        # Data now has lat and long in the correct order
+        return coords
     return None
 
 class Receipt:
