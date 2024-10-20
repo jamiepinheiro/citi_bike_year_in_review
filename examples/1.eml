@@ -1,0 +1,1177 @@
+Delivered-To: jamiepinheiro@gmail.com
+Received: by 2002:a05:6918:a4c5:b0:286:2576:11db with SMTP id h5csp458792ysb;
+        Sat, 12 Oct 2024 07:32:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEvN0Ssuo66swwWQ8vXTPHWwM8ZRbNz7UGiPAthpVMOzTIZZToAPx5dsN2osl4qq81g2z1y
+X-Received: by 2002:a17:902:74c5:b0:206:fd9d:b88d with SMTP id d9443c01a7336-20ca172f130mr66138515ad.61.1728743540753;
+        Sat, 12 Oct 2024 07:32:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728743540; cv=none;
+        d=google.com; s=arc-20240605;
+        b=R7DNjiiIqhMLp9qbuwIe6t83C+T6sy2g2SiMB7qQBwR+8jRFIglPMkrq/0n32KeO/z
+         D2ruEDAAdVvWhGLX2DTct8YncaobvUDosVSeEbuDHbRw59Jo38Vf/rtRF+/05UubRExW
+         VB6n39vRpKtCRR8mpJ+MbW4jRAtOxeC+8G7Obl6uPBD9G7Oj9DHfMpk21o8bXqPKUolo
+         ApCV74lIy+BwBP9SXKI2DMdowrUMxO+unl+FjreQ+rQxJq1ilsrzS3fjF0QO0UoqbW4t
+         x53fkdTGCCE3UFhubiqS4RPOUS5LObIiHKVP8J7ySF16QlD5ddsPTC4mdBhrRsTMmrZz
+         nnYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:message-id:to:from:subject:mime-version
+         :date:sender:dkim-signature:dkim-signature;
+        bh=pS70sXxa/u3moPdGth5fgCrjFG7KaQ81Zk03MaPYDvk=;
+        fh=jbynT/yMEMmImsSkjYzVHffT08sHhAOgjZKtjRen7xc=;
+        b=HmPMqxuvJtFAZsdVAEOTyZM5o5FgsM4MSa2lSzGcsL8cja/FL1B+mLPhAl48e813i1
+         1hplqIG0M/q3NjYxhCvqhW9rlrIbUJtHvP5S5Q+Zrgu6uLE8E52nAQK3dVSYZBacJHbk
+         ak7hk6X61kVZ7ESfYLaUv08fFPcueYbF8JVokcIWNTN/qozwWa4uRc8v+ViOFslX2MQH
+         POU3QcpQMYFqVyNjJWYFvmcD+w91HAf2FCDXYUrmgyye4rElEeXGIwpZv0qcOZKimr3s
+         KTc6BSSxO6EgVOMYRlOqTuzG0FE2zzviQYU9KT8e/WFwoPWevLMtolv84uH8KOadpTt1
+         u1Wg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@updates.citibikenyc.com header.s=smtp header.b=Uq9eZ1es;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=W0sv6eJw;
+       spf=pass (google.com: domain of bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com designates 161.38.201.147 as permitted sender) smtp.mailfrom="bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=citibikenyc.com
+Return-Path: <bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com>
+Received: from m201-147.mailgun.net (m201-147.mailgun.net. [161.38.201.147])
+        by mx.google.com with UTF8SMTPS id d9443c01a7336-20c8c348bdbsi62614595ad.489.2024.10.12.07.32.20
+        for <jamiepinheiro@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Oct 2024 07:32:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com designates 161.38.201.147 as permitted sender) client-ip=161.38.201.147;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@updates.citibikenyc.com header.s=smtp header.b=Uq9eZ1es;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=W0sv6eJw;
+       spf=pass (google.com: domain of bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com designates 161.38.201.147 as permitted sender) smtp.mailfrom="bounce+f715e6.55798c-jamiepinheiro=gmail.com@updates.citibikenyc.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=citibikenyc.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=updates.citibikenyc.com; q=dns/txt; s=smtp; t=1728743539; x=1728750739;
+ h=Content-Transfer-Encoding: Content-Type: Message-Id: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender: Sender: X-Feedback-Id;
+ bh=pS70sXxa/u3moPdGth5fgCrjFG7KaQ81Zk03MaPYDvk=;
+ b=Uq9eZ1esb0gOmdH0+N6PN4R6ql4hRHT8Ean5NHd5yWnzaCcoV5xDpi2DxVdBC/nHWygC7dk8/FbJm131xGalwfe1ngTDBM8adOjj8B65/IKzCAQeeNgANvIYeGJzLmcyGNFP2iDfsRwl9hDWrbY/lEcvWnlqEe5cuzU6DqN+/cQ=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg; t=1728743539; x=1728750739;
+ h=Content-Transfer-Encoding: Content-Type: Message-Id: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender: Sender: X-Feedback-Id;
+ bh=pS70sXxa/u3moPdGth5fgCrjFG7KaQ81Zk03MaPYDvk=;
+ b=W0sv6eJwi2wjLQ/p2jAqpi2od/RSSpppfJWbQnNhMr/EcrxyiLiGOA0cXp+Jo4fxLvXjYLuckU7gy8iSimyKRh0io2MxRsBIosemWK/zaLYYdbghLDpClIuiIQ1vbMDqRQeB7jgZz0WadaSnzRiGSJYrcDTFDfjnBK4j/XvvQfw=
+X-Feedback-Id: no-reply@updates.citibikenyc.com:rideable_ride_receipts-receipt:5e7d0a9765df5297586de7da:mailgun
+X-Mailgun-Sending-Ip: 161.38.201.147
+X-Mailgun-Sending-Ip-Pool-Name: 
+X-Mailgun-Sending-Ip-Pool: 
+X-Mailgun-Sid: WyJhM2JkMiIsImphbWllcGluaGVpcm9AZ21haWwuY29tIiwiNTU3OThjIl0=
+Received: by d4429c9254d8 with HTTP id 670a88739c327ece5bc1b1ff; Sat, 12 Oct 2024
+ 14:32:19 GMT
+Sender: no-reply@updates.citibikenyc.com
+Date: Sat, 12 Oct 2024 14:32:19 +0000
+Mime-Version: 1.0
+Subject: Ride Receipt
+From: Citi Bike Receipts <no-reply@updates.citibikenyc.com>
+To: jamiepinheiro@gmail.com
+X-Mailgun-Tag: rideable_ride_receipts
+X-Mailgun-Tag: receipt
+X-Mailgun-Variables: {"lyft_message_id": "f163deaf-3f7e-4cf2-a7e1-ceacf59aa8e0"}
+Message-Id: <20241012143219.5e78c4f4da8e4983@updates.citibikenyc.com>
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!-- Automatically generated by make_email v1.4.1. Do not edit this file. -=
+->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+
+
+   =20
+
+
+
+    =20
+    =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+    <meta charset=3D"utf-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0">
+    <meta name=3D"apple-mobile-web-app-capable" content=3D"yes">
+    <meta content=3D"yes" name=3D"apple-touch-fullscreen">
+    <meta name=3D"apple-mobile-web-app-status-bar-style" content=3D"black">
+    <meta name=3D"format-detection" content=3D"telephone=3Dno">
+    <meta name=3D"format-detection" content=3D"date">
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <meta name=3D"x-apple-disable-message-reformatting" />
+    <title>Lyft</title>
+    <style type=3D"text/css">
+    /*******************FONT STYLING LYFT*********************/
+
+   @import url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI/L=
+yftProUI-Bold.otf');
+    @font-face {
+        font-family: 'LyftProUI-Bold';
+        src: url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI=
+/LyftProUI-Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @import url('https://s3.amazonaws.com/lyft-assets/font/Lyft+Pro+UI/Lyft=
+ProUI-Bold.otf');
+    @font-face {
+        font-family: 'LyftProUI-Bold';
+        src: url('https://s3.amazonaws.com/lyft-assets/font/Lyft+Pro+UI/Lyf=
+tProUI-Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @import url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI/=
+LyftProUI-Regular.otf');
+    @font-face {
+        font-family: 'LyftProUI-Regular';
+        src: url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI=
+/LyftProUI-Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @import url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI/=
+LyftProUI-SemiBold.otf');
+    @font-face {
+        font-family: 'LyftProUI-SemiBold';
+        src: url('https://s3.amazonaws.com/lyft-assets/font/Lyft%20Pro%20UI=
+/LyftProUI-SemiBold.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    /************************* END FONT STYLING ***************************=
+*********/
+    /* standard resets */
+
+    div,
+    p,
+    a,
+    li,
+    td {
+        -webkit-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    table td {
+        border-collapse: collapse;
+    }
+
+    .ExternalClass {
+        width: 100%;
+    }
+
+    .ExternalClass * {
+        line-height: 110%
+    }
+
+    img {
+        -ms-interpolation-mode: bicubic;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+    /* control text changed to links by phones */
+
+    @media only screen {
+        a[href^=3D"tel"],
+        a[href^=3D"sms"] {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+        /* Stops automatic email inks in iOS */
+
+    a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+
+    a[href^=3D"x-apple-data-detectors:"] {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    .footerLinks {
+        text-decoration: none;
+        color: inherit !important;
+        font-family: 'LyftProUI-Regular', 'Helvetica Neue', Helvetica, Aria=
+l, sans-serif;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: normal;
+    }
+    /********* CTA Style - fixed padding *********/
+
+    .cta-shadow {
+        -webkit-box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.2);
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: bold;
+        letter-spacing: 0px;
+        text-decoration: none;
+    }
+    /************************* Fixing Auto Styling for Gmail***************=
+******/
+
+    .contact {
+        color: #88888f !important!;
+        text-decoration: none;
+    }
+
+    u+#body a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+    }
+    </style>
+    <style type=3D"text/css">
+    /* Yahoo and apple mail reset on desktop */
+    @media screen and (min-width: 600px) {
+
+        .wrapto600px {
+            width: 600px !important;
+        }
+        .block {
+            width: 300px !important;
+        }
+        .block200 {
+            width: 200px !important;
+        }
+
+        .threecolumn {
+            width: 200px !important;
+            height: auto !important;
+        }
+        .threecolumn93px {
+            width: 93px !important;
+            height: auto !important;
+        }
+        .threecolumn277px {
+            width: 277px !important;
+            height: auto !important;
+        }
+        .threecolumn170px {
+            width: 170px !important;
+            height: auto !important;
+        }
+    }
+    </style>
+    <style type=3D"text/css">
+    /* responsive rules */
+    @media screen and (max-device-width: 600px),
+    screen and (max-width: 600px) {
+        .wrapto100pc {
+            width: 100% !important;
+            height: auto !important;
+            max-width: 100% !important;
+            max-height: auto !important;
+        }
+        .wrapto90pc {
+            width: 90% !important;
+            height: auto !important;
+            max-width: 90% !important;
+            max-height: auto !important;
+        }
+        .wrapto600px {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .block {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .block200 {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .flip {
+            width: 100% !important;
+            height: auto !important;
+            display: table !important;
+        }
+        .blocktop {
+            width: 100% !important;
+            height: auto !important;
+            display: table-header-group !important;
+        }
+        .blockbottom {
+            width: 100% !important;
+            height: auto !important;
+            display: table-footer-group !important;
+        }
+        .block200top {
+            width: 100% !important;
+            height: auto !important;
+            display: table-header-group !important;
+        }
+        .block400bottom {
+            width: 100% !important;
+            height: auto !important;
+            display: table-footer-group !important;
+        }
+        .threecolumn {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .threecolumn93px {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .threecolumn277px {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .threecolumn170px {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .centertext {
+            text-align: center !important;
+        }
+        .heightauto {
+            height: auto !important;
+        }
+        .h10 {
+            height: 10px !important;
+        }
+        .h20 {
+            height: 20px !important;
+        }
+        .h30 {
+            height: 30px !important;
+        }
+        .w30 {
+            width: 30px !important;
+        }
+        .w10 {
+            width: 10px !important;
+        }
+        .nomob {
+            display: none !important;
+            width: 0px !important;
+            height: 0px !important;
+        }
+        .wrapto100pcpt10 {
+            width: 100% !important;
+            height: auto !important;
+            padding-top: 10px !important;
+        }
+        .fontsize15 {
+            font-size: 15px !important;
+            line-height: 20px !important;
+        }
+        .fontsize16 {
+            font-size: 16px !important;
+            line-height: 21px !important;
+        }
+        .fontsize17 {
+            font-size: 17px !important;
+            line-height: 22px !important;
+        }
+        .titlefont {
+            font-size: 24px !important;
+            line-height: 30px !important;
+        }
+        .subtitlefont {
+            font-size: 14px !important;
+            line-height: 22px !important;
+        }
+        .paddingt20 {
+            padding-top: 20px !important;
+        }
+        .paddinglr0 {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+        .paddinglr30 {
+            padding-left: 30px !important;
+            padding-right: 30px !important;
+        }
+        .paddinglr40 {
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+        }
+        .blockswitch {
+            direction: ltr!important;
+            width: 100% !important;
+        }
+        .blockswitch2 {
+            display: table-footer-group!important;
+            width: 100% !important;
+        }
+        .blockswitch3 {
+            display: table-header-group!important;
+            width: 100% !important;
+        }
+        .bump {
+            display: block !important;
+        }
+
+        .showmob {
+            display: block !important;
+            max-height: none !important;
+            font-family: 'raleway-regular', Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            line-height: 30px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            text-align: center;
+            color: #475262;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+    </style>
+    <style type=3D"text/css">
+    @media only screen and (max-width: 385px) {
+        .mobileSpacer {
+            height: 35px;
+        }
+        .mobileHeaderSmall {
+            font-size: 18px !important;
+            line-height: 18px !important;
+            padding-right: none;
+        }
+        .mobileBodySmall {
+            font-size: 14px !important;
+            padding-right: none;
+        }
+    }
+    </style>
+    <style type=3D"text/css">
+    @media only screen and (max-width: 520px) {
+        .mobileHeader {
+            font-size: 44px !important;
+            line-height: 44px !important;
+        }
+        .mobileHeader56 {
+            font-size: 56px !important;
+            line-height: 56px !important;
+        }
+        .mobileBody {
+            font-size: 14px !important;
+        }
+
+        .mobilepadRL {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+    }
+    </style>
+    <!--[if gte mso 9]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+     </o:OfficeDocumentSettings>
+    </xml>
+   <![endif]-->
+    <!--[if mso]>
+<style type=3D"text/css">
+span {font-family: Helvetica, Arial, sans-serif !important;}
+</style>
+<![endif]-->
+    <!-- Fall-back font for Outlook (Arial) -->
+    <!--[if (gte mso 9)|(IE)]>
+
+    <style type=3D"text/css">
+
+    a, body, div, li, p, strong, td, span {font-family: Arial, Helvetica, s=
+ans-serif !important;}
+
+    </style>
+
+  <![endif]-->
+</head>
+
+<body leftmargin=3D"0" topmargin=3D"0" rightmargin=3D"0"  width=3D"100%">
+    <!-- Begin Preheader -->
+    <div style=3D"display:none; font-size:1px; color:#ededf0; line-height:1=
+px; max-height:0px; max-width:0px; opacity:0; overflow:hidden;">
+       =20
+   =20
+   =20
+
+   =20
+    OCTOBER 12, 2024
+    AT
+    10:07 AM
+ Bike ride total: $3.92 MasterCard *9652 - Details inside
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;
+        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;
+    </div>
+    <!-- End Preheader -->
+    <!--  Content -->
+    <!--[if (gte mso 9)|(IE)]><table border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"600" align=3D"center"><tr><td align=3D"center"><![endif=
+]-->
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+align=3D"center" bgcolor=3D"#FDFDFB" style=3D"background-color: #FDFDFB;">
+        <tr>
+            <td width=3D"100%" align=3D"center">
+                <table bgcolor=3D"#ffffff" class=3D"wrapto600px" width=3D"6=
+00" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"background-color: #ffffff; border: 1px solid #11111F;">
+                    <tr>
+                        <td height=3D"30" style=3D"max-height: 30px !import=
+ant; height:30px; display:block;">&nbsp;</td>
+                    </tr>
+                    <!-- standard logo -->
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                               =20
+    <tr>
+        <td align=3D"left">
+            <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" borde=
+r=3D"0">
+                <tr>
+                    <td width=3D"154" style=3D"padding: 0 4%; text-align: l=
+eft;">
+                        <img src=3D"https://s3.amazonaws.com/growth.lyft.co=
+m/img/tbs/logo/23Q1_Brand_Refresh/Citi_Bike_powered_by_Lyft_color_logo.png"=
+ alt=3D"Citi Bike" border=3D"0" width=3D"154" style=3D"max-width: 154px; di=
+splay: block;" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                           =20
+    <tr><td colspan=3D"3" height=3D"35" style=3D"max-height:35px !important=
+; height:35px; display:block;">&nbsp;</td></tr>
+    <tr><td colspan=3D"3" align=3D"left" valign=3D"middle" style=3D"-webkit=
+-font-smoothing: antialiased; font-family: 'LyftProUI-Bold', 'Helvetica Neu=
+e', Helvetica, Arial, sans-serif; font-size: 13px; color: #11111f; line-hei=
+ght: 16px; text-align: left; padding: 0 4%;">
+    OCTOBER 12, 2024
+    AT
+    10:07 AM
+</td></tr>
+    <tr>
+        <td colspan=3D"3" align=3D"center" valign=3D"middle" width=3D"100%"=
+ style=3D"padding: 0 4%;">
+            <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" borde=
+r=3D"0">
+                <tr>
+                    <td align=3D"center" valign=3D"middle">
+                        <table width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0">
+                            <tr>
+                                <td width=3D"70%" align=3D"left" style=3D"-=
+webkit-font-smoothing: antialiased; font-family: 'LyftProUI-SemiBold', 'Hel=
+vetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; color: #11111f=
+; line-height: 36px; text-align: left; padding: 0px 25px 10px 0px;">
+          Thanks for riding with us!
+     </td>
+                                <td width=3D"30%" align=3D"right" style=3D"=
+-webkit-font-smoothing: antialiased; font-family: 'LyftProUI-SemiBold', 'He=
+lvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; color: #11111=
+f; line-height: 17px; text-align: center; padding: 0px 25px 10px;">
+                                    <table>
+                                        <tr>
+                                            <td height=3D"70" width=3D"70" =
+align=3D"center" valign=3D"middle" background=3D "https://s3.amazonaws.com/=
+growth.lyft.com/img/lbs/rideable_background.png" style=3D"background-size: =
+100% 100%;">
+                                               =20
+    <img src=3D"https://cdn.lyft.com/static/lastmile/rideable-assets/assets=
+-per-region/bkn/citi_bike_cosmo@xxxhdpi.png" style=3D"display: block;" widt=
+h=3D"75">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height=3D"30" width=3D"74" =
+align=3D"center" valign=3D"middle" background=3D "https://s3.amazonaws.com/=
+growth.lyft.com/img/lbs/pill_background.png" style=3D"background-size: 100%=
+ 100%; color: #333347; -webkit-font-smoothing: antialiased; font-family: 'P=
+roxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: =
+600; font-size: 15px;">
+                                               =20
+    474-1245
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td height=3D"20" style=3D"font-size: 20px; line-height=
+: 20px; -mso-line-height: 20px;">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align=3D"center" valign=3D"middle" width=3D"4%"></td>
+        <td width=3D"92%" align=3D"center" valign=3D"middle" style=3D"borde=
+r-top: 1px solid #E8E8E8;"></td>
+        <td align=3D"center" valign=3D"middle" width=3D"4%"></td>
+    </tr>
+    <tr>
+        <td colspan=3D"3" height=3D"20" style=3D"font-size: 20px; line-heig=
+ht: 20px; -mso-line-height: 20px;">&nbsp;</td>
+    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                                <!-- is_cancelled_reservation here is used =
+only to avoid error in template editor -->
+                               =20
+                               =20
+   =20
+        <tr>
+            <td align=3D"left" valign=3D"middle" style=3D"color: #0C0B31; -=
+webkit-font-smoothing: antialiased; font-family: 'Proxima Nova', 'Helvetica=
+ Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 22px; p=
+adding: 0 0 12px 4%; font-weight: 400;">
+                Free unlock<br><span style=3D"color: #0C0B31; font-size: 15=
+px; line-height: 20px;"></span>
+            </td>
+            <td align=3D"right" valign=3D"top" width=3D"30%" style=3D"color=
+: #0C0B31; -webkit-font-smoothing: antialiased; font-family: 'Proxima Nova'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-hei=
+ght: 22px; padding: 0 4% 12px 0; font-weight: 400;">
+                $0.00
+            </td>
+        </tr>
+   =20
+        <tr>
+            <td align=3D"left" valign=3D"middle" style=3D"color: #0C0B31; -=
+webkit-font-smoothing: antialiased; font-family: 'Proxima Nova', 'Helvetica=
+ Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 22px; p=
+adding: 0 0 12px 4%; font-weight: 400;">
+                Ebike ride ($0.24 per min for 15 min)<br><span style=3D"col=
+or: #0C0B31; font-size: 15px; line-height: 20px;"></span>
+            </td>
+            <td align=3D"right" valign=3D"top" width=3D"30%" style=3D"color=
+: #0C0B31; -webkit-font-smoothing: antialiased; font-family: 'Proxima Nova'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-hei=
+ght: 22px; padding: 0 4% 12px 0; font-weight: 400;">
+                $3.60
+            </td>
+        </tr>
+   =20
+        <tr>
+            <td align=3D"left" valign=3D"middle" style=3D"color: #0C0B31; -=
+webkit-font-smoothing: antialiased; font-family: 'Proxima Nova', 'Helvetica=
+ Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 22px; p=
+adding: 0 0 12px 4%; font-weight: 400;">
+                NYC Sales Tax<br><span style=3D"color: #0C0B31; font-size: =
+15px; line-height: 20px;"></span>
+            </td>
+            <td align=3D"right" valign=3D"top" width=3D"30%" style=3D"color=
+: #0C0B31; -webkit-font-smoothing: antialiased; font-family: 'Proxima Nova'=
+, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-hei=
+ght: 22px; padding: 0 4% 12px 0; font-weight: 400;">
+                $0.32
+            </td>
+        </tr>
+   =20
+        <tr>
+            <td colspan=3D"2" align=3D"center" valign=3D"middle">
+                <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" b=
+order=3D"0">
+                    <tr>
+                        <td colspan=3D"3" height=3D"24" style=3D"font-size:=
+ 24px; line-height: 24px; -mso-line-height: 24px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"4%"=
+></td>
+                        <td width=3D"92%" align=3D"center" valign=3D"middle=
+" style=3D"border-top: 1px solid #11111F;"></td>
+                        <td align=3D"center" valign=3D"middle" width=3D"4%"=
+></td>
+                    </tr>
+                    <tr>
+                        <td colspan=3D"3" height=3D"22" style=3D"font-size:=
+ 22px; line-height: 22px; -mso-line-height: 22px;">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                               =20
+   =20
+       =20
+       =20
+        <tr>
+            <td align=3D"left" valign=3D"middle" style=3D"padding: 0 2% 0 4=
+%;" width=3D"10%">
+                <img src=3D"https://s3.amazonaws.com/lyft.zimride.com/image=
+s/emails/credit_icons/cc_mastercard.png" width=3D"35" height=3D"23" style=
+=3D"border: 0; display: inline-block; vertical-align: middle;">
+            </td>
+            <td align=3D"left" valign=3D"middle" style=3D"-webkit-font-smoo=
+thing: antialiased; font-family: 'Proxima Nova', 'Helvetica Neue', Helvetic=
+a, Arial, sans-serif; font-size: 15px; color: #0C0B31; line-height: 20px; p=
+adding:0 4% 0 1%; font-weight: 400;" width=3D"60%">
+                MasterCard *9652
+               =20
+                <br>
+                <span style=3D"color: #0b0a30; opacity: 70%;">
+           =20
+                Next billing date:=20
+           =20
+                10/13/2024
+           =20
+       =20
+           =20
+        </span>
+               =20
+            </td>
+            <td align=3D"right" valign=3D"middle" width=3D"30%" style=3D"pa=
+dding-right: 4%; -webkit-font-smoothing: antialiased; font-family: 'LyftPro=
+UI-Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; =
+color: #0C0B31; line-height: 32px;">
+                $3.92
+            </td>
+        </tr>
+   =20
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                               =20
+                               =20
+                               =20
+
+                               =20
+                                 =20
+   =20
+   =20
+   =20
+   =20
+       =20
+       =20
+       =20
+       =20
+       =20
+       =20
+       =20
+       =20
+            <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"wrapto600px" width=3D"600">
+               <tr>
+                  <td height=3D"30" style=3D"max-height:30px !important; he=
+ight:30px; display:block;">&nbsp;</td>
+               </tr>
+               <tr>
+                  <td style=3D"padding: 0 4%; font-family: 'LyftProUI-SemiB=
+old', 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-=
+align: center; color:#0C0B31; line-height: 24px; font-weight: bold; font-si=
+ze: 22px; vertical-align: middle; text-align: left" align=3D"center" valign=
+=3D"middle">
+                      Lyft Pink savings=20
+                  </td>
+               </tr>
+               <tr>
+                  <td height=3D"15" style=3D"font-size: 15px; line-height: =
+15px; -mso-line-height: 15px;">&nbsp;</td>
+               </tr>
+               =20
+                   <tr>
+                      <td style=3D"padding:0px 4%;">
+                         <!--=3D=3D=3D=3D=3D=3D=3D=3DList Area=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D-->
+                         <table width=3D"100%" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0">
+                            <tr>
+                               <td width=3D"70%" style=3D"-webkit-font-smoo=
+thing: antialiased; font-family: 'Proxima Nova', 'Helvetica Neue', Helvetic=
+a, Arial, sans-serif; font-size: 17px; color: #0C0B31; line-height: 22px; p=
+adding-left: 4%; padding-right: 4%; text-align: left;">
+                                   Saved this trip=20
+                               </td>
+                               <td width=3D"30%" align=3D"right" valign=3D"=
+middle" style=3D"color: #0C0B31; -webkit-font-smoothing: antialiased; font-=
+family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif; fon=
+t-size: 17px; line-height: 22px; padding: 0 4% 12px 0; font-weight: 800;">
+                                  $7.17
+                               </td>
+                            </tr>
+                         </table>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td height=3D"10" style=3D"max-height:10px !important=
+; height:10px; display:block;">&nbsp;</td>
+                   </tr>
+              =20
+              =20
+            </table>
+       =20
+   =20
+   =20
+
+                               =20
+                            </table>
+                        </td>
+                    </tr>
+                   =20
+                    <tr>
+                        <td height=3D"15" style=3D"font-size: 15px; line-he=
+ight: 15px; -mso-line-height: 15px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                           =20
+    <tr>
+        <td height=3D"18" style=3D"font-size: 18px; line-height: 18px; -mso=
+-line-height: 18px;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align=3D"center" valign=3D"middle" style=3D"padding: 0 4%;">
+            <img src=3D"https://api.lyft.com/v1/staticmap/general?version=
+=3Dv2&amp;tile_version=3D9&amp;hash=3D857f78151f63d6494507a47361c5dfc2e1060=
+b4a27a921404794a52654a84c2f&amp;origin_lat=3D40.74598&amp;origin_lng=3D-73.=
+98629&amp;dest_lat=3D40.76591&amp;dest_lng=3D-73.97634&amp;polyline=3DkeuwF=
+hmqbMzAa%40g%40%60%40g%40H%7DBvAeGvNg%40MgAe%40aDkC%7B%40UoA%40sAi%40eBeCqB=
+sBk%40eAe%40_%40wAaAgFwCkCmChc%40pX%7Dh%40eXUQkEaDy%40c%40qAgAm%40i%40aACs%=
+40%5B%40qA_%40s%40d%60%40l%60%40sf%40we%40wGaE_AiAkBiA%7BF%7BDs%40q%40g%40%=
+5Bs%40UiF%7DDcAq%40_Ao%40KBEKKAGG%7BCc%40&amp;region=3DBKN&amp;start_points=
+=3D0&amp;end_points=3D0&amp;use_lyftmap_tiles=3D1&template=3Dridehistory&ve=
+rsion=3Dv4_lbs_newyorkcity" width=3D"100%" style=3D"border: 0; display: blo=
+ck;">
+        </td>
+    </tr>
+    <tr>
+        <td height=3D"30" style=3D"font-size: 30px; line-height: 30px; -mso=
+-line-height: 30px;">&nbsp;</td>
+    </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"center" valign=3D"middle" width=3D"100=
+%">
+                            <table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"wrapto600px">
+                           =20
+                               =20
+    <tr>
+        <td colspan=3D"3" align=3D"left" valign=3D"middle" style=3D"-webkit=
+-font-smoothing: antialiased; font-family: 'LyftProUI-Bold', 'Helvetica Neu=
+e', Helvetica, Arial, sans-serif; font-size: 22px; color: #0C0B31; line-hei=
+ght: 28px; padding: 0 5%;">
+           =20
+          Your Trip
+    =20
+        </td>
+    </tr>
+    <tr>
+        <td colspan=3D"3" height=3D"17" style=3D"font-size: 17px; line-heig=
+ht: 17px; -mso-line-height: 17px;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align=3D"center" valign=3D"middle" style=3D"padding-left: 7%;" =
+width=3D"40">
+            <!-- marker -->
+            <img src=3D"https://s3.amazonaws.com/growth.lyft.com/img/lbs/em=
+ails/markers/Stop_S.png" width=3D"14" alt=3D"" style=3D"border: 0; display:=
+ block;">
+        </td>
+        <td align=3D"left" valign=3D"middle" style=3D"padding-left: 3%; -we=
+bkit-font-smoothing: antialiased; font-family: 'Proxima Nova', 'Helvetica N=
+eue', Helvetica, Arial, sans-serif;font-size: 17px; color: #0C0B31; line-he=
+ight: 20px; font-weight: 400;">
+            5 Ave &amp; E 30 St
+        </td>
+        <td align=3D"right" valign=3D"middle" width=3D"30%" style=3D"paddin=
+g-right: 4%; -webkit-font-smoothing: antialiased; font-family: 'Proxima Nov=
+a', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color:=
+ #0C0B31; line-height: 16px;">
+            <span style=3D"font-weight: 400;">Start</span><br>
+            10:07 am
+        </td>
+    </tr>
+    <tr>
+        <td colspan=3D"3" height=3D"17" style=3D"font-size: 17px; line-heig=
+ht: 17px; -mso-line-height: 17px;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align=3D"center" valign=3D"middle" style=3D"padding-left: 7%;" =
+width=3D"40">
+            <!-- marker -->
+            <img src=3D"https://s3.amazonaws.com/growth.lyft.com/img/lbs/em=
+ails/markers/Stop-Purple_S.png" width=3D"14" alt=3D"" style=3D"border: 0; d=
+isplay: block;">
+        </td>
+        <td align=3D"left" valign=3D"middle" style=3D"padding-left: 3%; -we=
+bkit-font-smoothing: antialiased; font-family: 'Proxima Nova', 'Helvetica N=
+eue', Helvetica, Arial, sans-serif;font-size: 17px; color: #0C0B31; line-he=
+ight: 20px; font-weight: 400;">
+            Central Park S &amp; 6 Ave
+        </td>
+        <td align=3D"right" valign=3D"middle" width=3D"30%" style=3D"paddin=
+g-right: 4%; -webkit-font-smoothing: antialiased; font-family: 'Proxima Nov=
+a', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color:=
+ #0C0B31; line-height: 16px;">
+            <span style=3D"font-weight: 400;">End</span><br>
+            10:21 am
+        </td>
+    </tr>
+
+                           =20
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height=3D"36" style=3D"font-size: 36px; line-he=
+ight: 36px; -mso-line-height: 36px;">&nbsp;</td>
+                    </tr>
+                   =20
+    <tr>
+        <td align=3D"left" style=3D"-webkit-font-smoothing: antialiased; fo=
+nt-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 16px; color: #1242AF; line-height: 22px; text-align: left;">
+            <table class=3D"wrapto600px" width=3D"100%" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" bgcolor=3D"#F4F4FA" style=3D"background-color=
+:#F4F4FA;">
+                <tr>
+                    <td height=3D"40" style=3D"font-size: 40px; line-height=
+: 40px; -mso-line-height: 40px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align=3D"center" style=3D"-webkit-font-smoothing: a=
+ntialiased; font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial=
+, sans-serif; font-size: 17px; color: #1242AF; line-height: 20px; text-alig=
+n: center;"><a href=3D"https://email.updates.citibikenyc.com/c/eJxkzL1urDAQ=
+xfGngQ7kjzEeFy5us6-BhvF4mRvYReBE2rePNinT_aRz9C85hJiQe8k2Oozgg0_9mg0EKB4hSUg=
+4VeG4RMYlRYQJMEy9ZmccWGOdBe9sGoNEZKhQCAUS-g7M51GoyTWyNl30Qx4vHvm591teWzuuzv=
+_r3K1zt1W24-_pVdu8y3XRXWYtudrJF6E6-BplAK5uoCh2YCGuIRGhmP7M_2lXOfSxip7PDsx9J=
+91-gi2fWoSWTeY35lNY9GjXe_hl_5XddwAAAP__sDBWlA" style=3D"color: #1242AF; fon=
+t-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif; f=
+ont-size: 17px;line-height: 20px; text-align: center; font-weight: bold;">Q=
+uestion about charges?</a></td>
+                </tr>
+                <tr>
+                       <td height=3D"15" style=3D"font-size: 15px; line-hei=
+ght: 15px; -mso-line-height: 15px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align=3D"center" style=3D"-webkit-font-smoothing: a=
+ntialiased; font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial=
+, sans-serif; font-size: 15px; color: #0C0B31; opacity: 70%; line-height: 1=
+8px; text-align: center;">
+                        Receipt # 2003336191455247690
+                    </td>
+                </tr>
+                <tr>
+                    <td height=3D"32" style=3D"font-size: 32px; line-height=
+: 32px; -mso-line-height: 32px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align=3D"center" height=3D"25" style=3D"mso-line-he=
+ight-rule:exactly; color:#63637B; font-family:'Proxima Nova', 'Helvetica Ne=
+ue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight:400; line-h=
+eight: 18px; text-align: center;">&#169; 2024 Lyft, Inc.
+                    </td>
+                </tr>
+                <tr>
+                    <td align=3D"center" style=3D"mso-line-height-rule:exac=
+tly; color: #63637B; font-family:'Proxima Nova', 'Helvetica Neue', Helvetic=
+a, Arial, sans-serif; font-size: 13px; line-height: 16px;" class=3D"footer-=
+text-small"> <a style=3D"text-decoration: none; color: #63637B;">548 Market=
+ St., P.O. Box 68514</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align=3D"center" style=3D"mso-line-height-rule:exac=
+tly; color: #63637B; font-family:'Proxima Nova', 'Helvetica Neue', Helvetic=
+a, Arial, sans-serif; font-size: 13px; line-height: 16px;" class=3D"footer-=
+text-small"> <a style=3D"text-decoration: none; color: #63637B;">San Franci=
+sco, CA 94104<br>CPUC ID No. TCP0032513 - P</a>
+                    </td>
+                </tr>
+                    <td height=3D"50" style=3D"font-size: 50px; line-height=
+: 50px; -mso-line-height: 50px;">&nbsp;</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+<img width=3D"1px" height=3D"1px" alt=3D"" src=3D"https://email.updates.cit=
+ibikenyc.com/o/eJwkzF2K6zAMQOHV1G8Jli3_PXgtQbHkVvcmbUg8A9390Jm3Dw4criGkkpuR=
+CsnlhD74Yh6128iFg-OIqZRgPVubAZDKShAjGa3OOgQLDtA7KHOQlBt2ZMqCJfsb2q-Dacg1Nx2=
+66n95vtvcXrvZ3n0su1wX3WVRrh2iZ6E--Z5kwtbdRElgakKth0KUxZqz_qNd5dDnQ_R83dDed9=
+LtdzjqqSy0brJ8sJzSRI9xfcIfzXd1PwEAAP__SatJ7w"></body>
+</html>
