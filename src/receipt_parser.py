@@ -4,6 +4,8 @@ from email.parser import BytesParser
 import json
 from fuzzywuzzy import process
 import html
+import sys
+import argparse
 
 def load_station_data(station_fpath):
     with open(station_fpath, 'r') as f:
@@ -85,7 +87,11 @@ class Receipt:
         )
 
 def main():
-    email_file = 'examples/2.eml'  # Replace with the path to your email file
+    parser = argparse.ArgumentParser(description='Parse Lyft receipt from email file.')
+    parser.add_argument('email_file', type=str, help='Path to the email file')
+    args = parser.parse_args()
+
+    email_file = args.email_file
     station_data = load_station_data('data/stations.json')
     # print(station_data)
     parsed_data = Receipt(email_file, station_data)
