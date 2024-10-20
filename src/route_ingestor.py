@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import argparse
 
 def extract_route(image_path):
     # Load the image
@@ -73,14 +72,11 @@ def draw_route_ascii(route_coords, width=50, height=20):
     # Convert canvas to string
     return '\n'.join(''.join(row) for row in canvas)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Extract route from an image.')
-    parser.add_argument('image_path', type=str, help='Path to the image file')
-    args = parser.parse_args()
-    
-    route = extract_route(args.image_path)
+def main():
+    route = extract_route('examples/1.png')
     ascii_map = draw_route_ascii(route)
     print(ascii_map)
+    # print(route)
 
-# print(route)
-
+if __name__ == "__main__":
+    main()
