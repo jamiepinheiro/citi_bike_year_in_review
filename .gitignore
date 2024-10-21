@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+route_map.png
 
 # C extensions
 *.so

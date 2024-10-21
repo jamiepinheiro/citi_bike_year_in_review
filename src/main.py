@@ -15,11 +15,7 @@ def draw_route_on_map(coordinates, zoom_start=12):
     
     # Add the route to the map
     folium.PolyLine(locations=coordinates, weight=5, color='blue').add_to(m)
-    
-    # Add markers for start and end points
-    folium.Marker(coordinates[0], popup='Start').add_to(m)
-    folium.Marker(coordinates[-1], popup='End').add_to(m)
-    
+   
     return m
 
 def pixel_to_gps_coordinates(route, start_gps, end_gps):
@@ -66,7 +62,7 @@ def _pixel_to_gps_coordinates(route, start_gps, end_gps):
     # Convert normalized coordinates to GPS coordinates
     gps_coords = start_gps + normalized_coords * [lat_diff, lon_diff]
     
-    return gps_coords.tolist()
+    return [start_gps] + gps_coords.tolist()
 
 def main():
     parser = argparse.ArgumentParser(description='Process Citi Bike receipt and route image.')
