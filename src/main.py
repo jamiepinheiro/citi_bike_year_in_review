@@ -41,29 +41,6 @@ def pixel_to_gps_coordinates(route, start_gps, end_gps):
     
     return gps_coords.tolist()
 
-def _pixel_to_gps_coordinates(route, start_gps, end_gps):
-    # Convert route coordinates to numpy array
-    pixel_coords = np.array(route.route_coords)
-    
-    # Extract start and end points from the Route object
-    start_pixel = np.array(route.start_point)
-    end_pixel = np.array(route.end_point)
-    
-    # Calculate the pixel differences
-    pixel_diff = end_pixel - start_pixel
-    
-    # Normalize coordinates based on start and end points
-    normalized_coords = (pixel_coords - start_pixel) / pixel_diff
-    
-    # Calculate the latitude and longitude differences
-    lat_diff = end_gps[0] - start_gps[0]
-    lon_diff = end_gps[1] - start_gps[1]
-    
-    # Convert normalized coordinates to GPS coordinates
-    gps_coords = start_gps + normalized_coords * [lat_diff, lon_diff]
-    
-    return [start_gps] + gps_coords.tolist()
-
 def main():
     parser = argparse.ArgumentParser(description='Process Citi Bike receipt and route image.')
     parser.add_argument('email_file', type=str, help='Path to the email file (.eml)')
