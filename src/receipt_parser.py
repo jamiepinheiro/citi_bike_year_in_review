@@ -52,6 +52,12 @@ class Receipt:
         # Extract receipt number
         receipt_number = re.search(r'Receipt #\s*(\d+)', html_content)
 
+        # Extract Lyft API URL
+        lyft_api_url = re.search(r'(https://api\.lyft\.com/v1/rides/\w+)', html_content)
+
+        # Extract map image URL
+        self.map_image_url = self.extractMapImageUrl(html_content)
+
         start_location_str = start_location.group(1).strip() if start_location else None
         end_location_str = end_location.group(1).strip() if end_location else None
 
@@ -68,6 +74,7 @@ class Receipt:
         self.total = total.group(1) if total else None
         self.lyft_pink_savings = lyft_pink_savings.group(1) if lyft_pink_savings else None
         self.receipt_number = receipt_number.group(1) if receipt_number else None
+        self.lyft_api_url = lyft_api_url.group(1) if lyft_api_url else None
 
     def __str__(self):
         return (
@@ -84,9 +91,19 @@ class Receipt:
             f"    payment_method={self.payment_method},\n"
             f"    total={self.total},\n"
             f"    lyft_pink_savings={self.lyft_pink_savings},\n"
-            f"    receipt_number={self.receipt_number}\n"
+            f"    receipt_number={self.receipt_number},\n"
+            f"    map_image_url={self.map_image_url}\n"
             f")"
         )
+
+    def extractMapImageUrl(self, html_content):
+        regex = r'(https://api\.lyft\.com/v1/staticmap/general[^"\']+)'
+        match = re.search(regex, html_content)
+        if match:
+            encoded_url = match.group(1)
+            decoded_url = html.unescape(encoded_url)
+            return decoded_url.replace('&amp;', '&')
+        return None
 
 def main():
     parser = argparse.ArgumentParser(description='Parse Lyft receipt from email file.')
