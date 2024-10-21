@@ -95,8 +95,6 @@ class Receipt:
                 except requests.RequestException as e:
                     print(f"Error downloading map image: {e}")
                     self.map_image_file = None
-            else:
-                print(f"Map image file {self.map_image_file} already exists")
         else:
             print("No map image URL available")
             self.map_image_file = None

@@ -57,7 +57,17 @@ class NormalizedRoute:
         print(f"GPS coordinates (first 5): {self.gps_coords[:5]}")
         draw_route_ascii(self.route)
         route_map = draw_route_on_map(self.gps_coords)
-        route_map.save("route_map.html")
+        # Get the directory and filename of the receipt
+        receipt_dir = os.path.dirname(self.receipt.map_image_file)
+        receipt_filename = os.path.splitext(os.path.basename(self.receipt.map_image_file))[0]
+        
+        # Create the route map filename with the same suffix as the receipt
+        route_map_filename = f"{receipt_filename}_route_map.html"
+        
+        # Save the route map in the same directory as the receipt
+        route_map_path = os.path.join(receipt_dir, route_map_filename)
+        route_map.save(route_map_path)
+        print(f"Route map saved as: {route_map_path}")
 
 def main():
     parser = argparse.ArgumentParser(description='Process Citi Bike receipt and route image.')
