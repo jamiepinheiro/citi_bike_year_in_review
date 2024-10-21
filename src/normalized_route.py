@@ -41,35 +41,34 @@ def pixel_to_gps_coordinates(route, start_gps, end_gps):
     
     return gps_coords.tolist()
 
+class NormalizedRoute:
+    def __init__(self, email_file, station_data):
+        self.receipt = Receipt(email_file, station_data)
+        self.route = extract_route(self.receipt.map_image_file)
+        self.gps_coords = pixel_to_gps_coordinates(self.route, self.receipt.start_location_coordinates, self.receipt.end_location_coordinates)
+    
+
+    def print_details(self):
+        print(self.receipt)
+
+        print(f"Start point: {self.route.start_point}")
+        print(f"End point: {self.route.end_point}")
+        print(f"Route coordinates (first 5): {self.route.route_coords[:5]}")
+        print(f"GPS coordinates (first 5): {self.gps_coords[:5]}")
+        draw_route_ascii(self.route)
+        route_map = draw_route_on_map(self.gps_coords)
+        route_map.save("route_map.html")
+
 def main():
     parser = argparse.ArgumentParser(description='Process Citi Bike receipt and route image.')
     parser.add_argument('email_file', type=str, help='Path to the email file (.eml)')
-    parser.add_argument('image_file', type=str, help='Path to the route image file (.png)')
     args = parser.parse_args()
 
     # Load station data
     station_data = load_station_data('data/stations.json')
-
-    # Process receipt
-    receipt = Receipt(args.email_file, station_data)
-    print(receipt)
-
-    # Process route image
-    route = extract_route(args.image_file)
-    print(f"Start point: {route.start_point}")
-    print(f"End point: {route.end_point}")
-    print(f"Route coordinates (first 5): {route.route_coords[:5]}")
-    ascii_map = draw_route_ascii(route)
-    print(ascii_map)
-
-    # Convert route coordinates to GPS coordinates
-    gps_coords = pixel_to_gps_coordinates(route, receipt.start_location_coordinates, receipt.end_location_coordinates)
-    print(f"GPS coordinates (first 5): {gps_coords[:5]}")
-
-    route_map = draw_route_on_map(gps_coords)
-    
-    # Save the map to an HTML file
-    route_map.save("route_map.html")
+     
+    normalized_route = NormalizedRoute(args.email_file, station_data)
+    normalized_route.print_details()
 
 if __name__ == "__main__":
     main()

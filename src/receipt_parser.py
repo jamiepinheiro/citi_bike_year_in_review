@@ -4,8 +4,9 @@ from email.parser import BytesParser
 import json
 from fuzzywuzzy import process
 import html
-import sys
+import os
 import argparse
+import requests
 
 def load_station_data(station_fpath):
     with open(station_fpath, 'r') as f:
@@ -75,6 +76,31 @@ class Receipt:
         self.lyft_pink_savings = lyft_pink_savings.group(1) if lyft_pink_savings else None
         self.receipt_number = receipt_number.group(1) if receipt_number else None
         self.lyft_api_url = lyft_api_url.group(1) if lyft_api_url else None
+    
+        if self.map_image_url:
+            # Generate the file name
+            email_file_dir = os.path.dirname(email_file)
+            email_file_prefix = os.path.splitext(os.path.basename(email_file))[0]
+            self.map_image_file = os.path.join(email_file_dir, f"{email_file_prefix}_map.png")
+            
+            # Check if the file already exists
+            if not os.path.exists(self.map_image_file):
+                try:
+                    response = requests.get(self.map_image_url)
+                    response.raise_for_status()  # Raise an exception for bad status codes
+                    
+                    with open(self.map_image_file, 'wb') as file:
+                        file.write(response.content)
+                    print(f"Map image downloaded and saved as {self.map_image_file}")
+                except requests.RequestException as e:
+                    print(f"Error downloading map image: {e}")
+                    self.map_image_file = None
+            else:
+                print(f"Map image file {self.map_image_file} already exists")
+        else:
+            print("No map image URL available")
+            self.map_image_file = None
+
 
     def __str__(self):
         return (
